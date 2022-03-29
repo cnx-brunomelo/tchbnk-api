@@ -1,0 +1,26 @@
+ server:
+    port: 5001
+  spring:
+    jpa:
+      databse-platform: org.hibernate.dialect.MySQLDialect
+      show-sql: true
+      hibernate:
+        ddl-auto: update
+      datasource:
+        url: jdbc:mysql://localhost:3006/banckAccount?createDatabaseIfNotExist=true
+        username: root
+        password: techbankRootPwd
+      kafka:
+        listener:
+          ack-node: MANUAL_IMMEDIATE
+        consumer:
+          bootstrap-servers: localhost:9092
+          group-id: bankaccConsumer
+          auto-offset-reset: earliest
+          key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+          value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+          properties:
+            spring:
+              json:
+                trusted:
+                  packages: "*"
