@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @SuperBuilder
 public class AccountOpenedEvent extends BaseEvent {
 
+    private String id;
     private String accountHolder;
     private AccountType accountType;
     private LocalDateTime createdDate;
